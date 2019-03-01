@@ -5,9 +5,13 @@
     <title>Title</title>
 </head>
 <body>
+
+<!--/post/{{post.id}}-->
+
+
     {%for post in posts%}
         {{post.id}}<br>
-        {{post.title}}<br>
+        <a href="{{post.get_absolute_url}}">{{post.title}}</a><br>
         {{post.text}}<br>
         {{post.publishing_date}}<br>
     {%endfor%}

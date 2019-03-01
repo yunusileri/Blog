@@ -1,5 +1,7 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.shortcuts import render, HttpResponse, \
+    get_object_or_404, HttpResponseRedirect,redirect
 from .models import Post
+from .form import PostForm
 
 
 # Create your views here.
@@ -19,12 +21,37 @@ def post_detail(request, id):
 
 
 def post_create(request):
-    return HttpResponse('Burası Post create')
+    # if request.method == "POST":
+    #     # Formdan Gelen Bilgileri Kaydet
+    #     forms = PostForm(request.POST)
+    #     if forms.is_valid():
+    #         forms.save()
+    # else:
+    #     # Formu Kullanıcıya Göster
+    #     forms = PostForm()
+
+    # Üstteki Satırlar da Aynı işi yapar
+    #  forms = PostForm(request.POST or None) Post dolu geldiyse parametre olarak al demektir.
+    forms = PostForm(request.POST or None)
+    if forms.is_valid():
+        post = forms.save()
+        return HttpResponseRedirect(post.get_absolute_url())
+    context = {'forms': forms}
+    return render(request, 'post/form.html', context)
 
 
-def post_update(request):
-    return HttpResponse('Burası Post update')
+def post_update(request, id):
+    post = get_object_or_404(Post, id=id)
+    forms = PostForm(request.POST or None, instance=post)
+    if forms.is_valid():
+        forms.save()
+        return HttpResponseRedirect(post.get_absolute_url())
+    context = {'forms': forms}
+    return render(request, 'post/form.html', context)
+    # return HttpResponse('Burası Post update')
 
 
-def post_delete(request):
-    return HttpResponse('Burası Post delete')
+def post_delete(request, id):
+    post = get_object_or_404(Post, id=id)
+    post.delete()
+    return redirect('post:index')
