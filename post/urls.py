@@ -1,8 +1,7 @@
 from django.urls import path, re_path
 from .views import *
 
-app_name ='post'
-
+app_name = 'post'
 
 urlpatterns = [
     path('index/', post_index, name='index'),

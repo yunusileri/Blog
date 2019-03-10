@@ -4,21 +4,23 @@
 {% block body %}
     <div class="container">
         <div class="row" style="margin-bottom: 30px;">
-            <div class="col-md-6 offset-md-2">
+            <div class="col-md-8 offset-md-2">
                 <div class="img-thumbnail">
 
 
                     <div class="caption">
-                        {% if posts.image %}
-                            <img src="{{ posts.image.url }}" class="img-fluid">
+                        {% if post.image %}
+                            <img alt="" class="img-fluid" src="{{ post.image.url }}">
                         {% endif %}
 
-                        <h3>{{ posts.title }}
-                            <small>{{ posts.publishing_date }}</small>
+                        <h3>{{ post.title }}
+                            <small>{{ post.publishing_date }}</small>
                         </h3>
-                        <p>{{ posts.text|safe|linebreaks }}</p>
-                        <p>
-                            <a href="{{ posts.get_absolute_url }}" class="btn btn-outline-dark" role="button">İncele</a>
+                        <h4>Yazar : {{ post.user.get_full_name }}</h4>
+                        <p class="col-md-6 offset-md-2">{{ post.text|safe|linebreaks }}</p>
+                        <p class="offset-md-4">
+                            <a href="{{ post.get_absolute_url }}" class="btn btn-outline-dark"
+                               role="button">İncele</a>
                             {% if request.user.is_authenticated %}
                                 <a href="{{ post.get_update_url }}" class="btn btn-outline-dark"
                                    role="button">Güncelle</a>
@@ -26,8 +28,23 @@
                             {% endif %}
                         </p>
                     </div>
+
+
                 </div>
+                <br> <br>
+                <hr>
+                <h3>Yorum Ekle</h3>
+
+                {% include 'post/comment.html' %}
+                <hr>
+            {% for comment in post.comments.all %}
+                <h4>{{ comment.name }}  |   <small>{{ comment.createdDate|timesince }} önce</small> </h4>
+                <p>{{ comment.content|linebreaks }}</p>
+                <hr>
+            {% endfor %}
             </div>
         </div>
+
+
     </div>
 {% endblock %}}

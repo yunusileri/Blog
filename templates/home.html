@@ -1,3 +1,5 @@
+{#           col-md-3 masaüstü, col-sm-6 tabletler col-xs-6 telefon ekranları içindir#}
+
 {% extends 'base.html' %}
 
 
@@ -5,30 +7,6 @@
 
 {% block body %}
     <div class="container-fluid">
-        {##}
-        {#        <div class="row" style="margin-bottom:30px;">#}
-        {#           col-md-3 masaüstü, col-sm-6 tabletler col-xs-6 telefon ekranları içindir#}
-        {#            <div class="col-md-3 col-sm-6" style="background-color: red;height: 100px;">1.Sütün</div>#}
-        {#            <div class="col-md-3 col-sm-6" style="background-color: #2dfff3;height: 100px;">1.Sütün</div>#}
-        {#            <div class="col-md-3 col-sm-6" style="background-color: #f0ff42;height: 100px;">1.Sütün</div>#}
-        {#            <div class="col-md-3 col-sm-6" style="background-color: #202cff;height: 100px;">1.Sütün</div>#}
-        {#        </div>#}
-        {#        <div class="row" style="margin-bottom:30px;">#}
-        {#           col-md-3 masaüstü, col-sm-6 tabletler col-xs-6 telefon ekranları içindir#}
-        {#            <div class="col-md-3 col-sm-6" style="background-color: red;height: 100px;">1.Sütün</div>#}
-        {#            <div class="col-md-3 col-sm-6" style="background-color: #2dfff3;height: 100px;">1.Sütün</div>#}
-        {#            <div class="col-md-3 col-sm-6" style="background-color: #f0ff42;height: 100px;">1.Sütün</div>#}
-        {#            <div class="col-md-3 col-sm-6" style="background-color: #202cff;height: 100px;">1.Sütün</div>#}
-        {#        </div>#}
-        {#        <div class="row" style="margin-bottom:30px;">#}
-        {#           col-md-3 masaüstü, col-sm-6 tabletler col-xs-6 telefon ekranları içindir#}
-        {#            <div class="col-md-3 col-sm-6" style="background-color: red;height: 100px;">1.Sütün</div>#}
-        {#            <div class="col-md-3 col-sm-6" style="background-color: #2dfff3;height: 100px;">1.Sütün</div>#}
-        {#            <div class="col-md-3 col-sm-6" style="background-color: #f0ff42;height: 100px;">1.Sütün</div>#}
-        {#            <div class="col-md-3 col-sm-6" style="background-color: #202cff;height: 100px;">1.Sütün</div>#}
-        {#        </div>#}
-
-
         <div class="row">
             <div class="col-md-4" style="background-color: red; height:100px;"></div>
             <div class="col-md-8" style="background-color: #01ffcc;height: 100px;">
@@ -39,6 +17,7 @@
                 </div>
             </div>
         </div>
+        <h3>Hoşgeldiniz {{ request.user.get_full_name }}</h3>
     </div>
 
 

@@ -6,6 +6,7 @@ from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Post(models.Model):
+    user = models.ForeignKey('auth.User', verbose_name='Yazar', on_delete=models.CASCADE, related_name='posts')
     title = models.CharField(max_length=128, verbose_name='Başlık')
     text = RichTextField(verbose_name='İçerik')
     publishing_date = models.DateTimeField(verbose_name='Yayımlanma Tarihi', auto_now_add=True)
@@ -49,3 +50,10 @@ class Post(models.Model):
     # Postların Görünümünü Sıralamak için
     class Meta:
         ordering = ['-publishing_date']
+
+
+class Comment(models.Model):
+    post = models.ForeignKey('post.Post', related_name='comments', on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, verbose_name='İsim')
+    content = models.TextField(verbose_name='İçerik')
+    createdDate = models.DateTimeField(auto_now_add=True)

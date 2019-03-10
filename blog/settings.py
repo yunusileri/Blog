@@ -158,3 +158,7 @@ CKEDITOR_CONFIGS = {
         ],
     }
 }
+# pip install django-recaptcha==1.2.1
+
+
+

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+<form method="post" class="uniForm">
+    {{ my_formset|crispy }}
+</form>
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <Form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h1>{{ title }}</h1>
+                    {{ forms|crispy }}
+                    <input class="btn btn-outline-primary" type="submit" value="{{ title }}">
+
+                </Form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

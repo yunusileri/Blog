@@ -1,21 +1,30 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, HttpResponseRedirect, redirect, Http404
 from .models import Post
-from .form import PostForm
+from .form import PostForm, CommentForm
 from django.contrib import messages
 from django.utils.text import slugify
+
 
 # Create your views here.
 
 
 def post_index(request):
-    posts = Post.objects.all()
-    return render(request, 'post/index.html', {'posts': posts})
+    post = Post.objects.all()
+    return render(request, 'post/index.html', {'posts': post})
 
 
 def post_detail(request, slug):
-    posts = get_object_or_404(Post, slug=slug)
+    post = get_object_or_404(Post, slug=slug)
+    form = CommentForm(request.POST or None)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post = post
+        comment.save()
+        return HttpResponseRedirect(post.get_absolute_url())
+
     contex = {
-        'posts': posts,
+        'post': post,
+        'form': form,
     }
     return render(request, 'post/detail.html', contex)
 
@@ -25,7 +34,9 @@ def post_create(request):
         return Http404()
     forms = PostForm(request.POST or None, request.FILES or None)
     if forms.is_valid():
-        post = forms.save()
+        post = forms.save(commit=False)
+        post.user = request.user
+        post.save()
 
         messages.success(request, 'Başarılı Bir Şekilde Oluşturdunuz.', extra_tags='mesaj-basarili')
         return HttpResponseRedirect(post.get_absolute_url())
