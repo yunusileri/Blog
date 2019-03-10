@@ -1,10 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-Merhaba, {{isim}} {{yas}}
-</body>
-</html>
+{% extends 'base.html' %}
+
+
+{% block title %}Anasayfa-{{ block.super }}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        {##}
+        {#        <div class="row" style="margin-bottom:30px;">#}
+        {#           col-md-3 masaüstü, col-sm-6 tabletler col-xs-6 telefon ekranları içindir#}
+        {#            <div class="col-md-3 col-sm-6" style="background-color: red;height: 100px;">1.Sütün</div>#}
+        {#            <div class="col-md-3 col-sm-6" style="background-color: #2dfff3;height: 100px;">1.Sütün</div>#}
+        {#            <div class="col-md-3 col-sm-6" style="background-color: #f0ff42;height: 100px;">1.Sütün</div>#}
+        {#            <div class="col-md-3 col-sm-6" style="background-color: #202cff;height: 100px;">1.Sütün</div>#}
+        {#        </div>#}
+        {#        <div class="row" style="margin-bottom:30px;">#}
+        {#           col-md-3 masaüstü, col-sm-6 tabletler col-xs-6 telefon ekranları içindir#}
+        {#            <div class="col-md-3 col-sm-6" style="background-color: red;height: 100px;">1.Sütün</div>#}
+        {#            <div class="col-md-3 col-sm-6" style="background-color: #2dfff3;height: 100px;">1.Sütün</div>#}
+        {#            <div class="col-md-3 col-sm-6" style="background-color: #f0ff42;height: 100px;">1.Sütün</div>#}
+        {#            <div class="col-md-3 col-sm-6" style="background-color: #202cff;height: 100px;">1.Sütün</div>#}
+        {#        </div>#}
+        {#        <div class="row" style="margin-bottom:30px;">#}
+        {#           col-md-3 masaüstü, col-sm-6 tabletler col-xs-6 telefon ekranları içindir#}
+        {#            <div class="col-md-3 col-sm-6" style="background-color: red;height: 100px;">1.Sütün</div>#}
+        {#            <div class="col-md-3 col-sm-6" style="background-color: #2dfff3;height: 100px;">1.Sütün</div>#}
+        {#            <div class="col-md-3 col-sm-6" style="background-color: #f0ff42;height: 100px;">1.Sütün</div>#}
+        {#            <div class="col-md-3 col-sm-6" style="background-color: #202cff;height: 100px;">1.Sütün</div>#}
+        {#        </div>#}
+
+
+        <div class="row">
+            <div class="col-md-4" style="background-color: red; height:100px;"></div>
+            <div class="col-md-8" style="background-color: #01ffcc;height: 100px;">
+                <div class="row">
+                    <div class="col-md-2" style="background-color: #fcff38; height: 100px;"></div>
+                    <div class="col-md-2" style="background-color: red; height: 100px;"></div>
+                    <div class="col-md-2" style="background-color: #1a68ff; height: 100px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}}

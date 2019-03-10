@@ -1,17 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<Form method="POST">
-    {%csrf_token%}
-    <h1>Form</h1>
-    {{forms.as_p}}
-<input type="submit" value="Gönder">
-<input type="reset">
-</Form>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-</body>
-</html>
+<form method="post" class="uniForm">
+    {{ my_formset|crispy }}
+</form>
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <Form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h1>Form</h1>
+                    {{ forms|crispy }}
+                    {{ forms.media }}
+                    <input class="btn btn-outline-primary" type="submit" value="Gönder">
+
+                </Form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
