@@ -21,7 +21,9 @@ def register_view(request):
     form = RegisterForm(request.POST or None)
     if form.is_valid():
         user = form.save(commit=False)
+
         password = form.cleaned_data.get('password1')
+
         user.set_password(password)
         # user.is_staff=True # Kullanıcının Admin Paneline Girmesine İzin verir
         # user.is_superuser=True
