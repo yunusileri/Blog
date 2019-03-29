@@ -28,7 +28,7 @@ def register_view(request):
         # user.is_staff=True # Kullanıcının Admin Paneline Girmesine İzin verir
         # user.is_superuser=True
         user.save()
-        new_user = authenticate(request, username=user.username, password=user.password)
+        new_user = authenticate(request, username=user.username, password=password)
         login(request, new_user)
         return redirect('home')
 
