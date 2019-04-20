@@ -14,7 +14,6 @@ DATABASES = {
 }
 
 
-ALLOWED_HOSTS = ['192.168.43.16']
 
 # projeyi canlıda çalıştırken gerekiyor
 # komut satırına python manage.py collectstatic yaz

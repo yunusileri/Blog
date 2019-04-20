@@ -24,7 +24,7 @@ SECRET_KEY = 'o=334*de!dgmnwa_+)x^=$9rril7i#q=&=mcqfr_0k3%yn)ibc'
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-
+ALLOWED_HOSTS = ['192.168.43.16']
 # Application definition
 
 INSTALLED_APPS = [
@@ -76,7 +76,6 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
 
 
 # Password validation
@@ -148,6 +147,3 @@ CKEDITOR_CONFIGS = {
     }
 }
 # pip install django-recaptcha==1.2.1
-
-
-
