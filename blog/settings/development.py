@@ -16,5 +16,3 @@ STATICFILES_DIRS = [
 # projeyi canlıda çalıştırken gerekiyor
 # komut satırına python manage.py collectstatic yaz
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
-
-ALLOWED_HOSTS = []
