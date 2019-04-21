@@ -23,11 +23,38 @@ SECRET_KEY = 'o=334*de!dgmnwa_+)x^=$9rril7i#q=&=mcqfr_0k3%yn)ibc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
-# ALLOWED_HOSTS = ['192.168.43.16']
-ALLOWED_HOSTS = []
-# Application definition
 
+# Yayın
+DEBUG = False
+ALLOWED_HOSTS = ['192.168.43.16']
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'blogdb',
+        'USER': 'yunus',
+        'PASSWORD': '1',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Geliştirici
+"""
+ALLOWED_HOSTS = []
+DEBUG = True
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+STATICFILES_DIRS = [
+   os.path.join(BASE_DIR, "static"),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+"""
 INSTALLED_APPS = [
     # Django Uygulamaları
 
@@ -73,18 +100,6 @@ TEMPLATES = [
     },
 ]
 
-DATABASES = {
-    'default': {
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': 'blogdb',
-        # 'USER': 'yunus',
-        # 'PASSWORD': '1',
-        # 'HOST': 'localhost',
-        # 'PORT': '',
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 WSGI_APPLICATION = 'blog.wsgi.application'
 
 # Database
@@ -122,12 +137,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
-
 STATIC_URL = '/static/'
-# noinspection PyUnresolvedReferences
-
 
 # Form Ekranını Özelleştirmek için
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -161,7 +171,3 @@ CKEDITOR_CONFIGS = {
 }
 # pip install django-recaptcha==1.2.1
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '/static')
-]
