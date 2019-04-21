@@ -24,7 +24,8 @@ SECRET_KEY = 'o=334*de!dgmnwa_+)x^=$9rril7i#q=&=mcqfr_0k3%yn)ibc'
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = True
-ALLOWED_HOSTS = ['192.168.43.16']
+# ALLOWED_HOSTS = ['192.168.43.16']
+ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../../templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,12 +75,14 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'blogdb',
-        'USER': 'yunus',
-        'PASSWORD': '1',
-        'HOST': 'localhost',
-        'PORT': '',
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # 'NAME': 'blogdb',
+        # 'USER': 'yunus',
+        # 'PASSWORD': '1',
+        # 'HOST': 'localhost',
+        # 'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 WSGI_APPLICATION = 'blog.wsgi.application'
@@ -160,5 +163,5 @@ CKEDITOR_CONFIGS = {
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '../../static')
+    os.path.join(BASE_DIR, '/static')
 ]
