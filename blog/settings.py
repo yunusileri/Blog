@@ -25,24 +25,26 @@ SECRET_KEY = 'o=334*de!dgmnwa_+)x^=$9rril7i#q=&=mcqfr_0k3%yn)ibc'
 
 
 # Yayın
-DEBUG = False
-ALLOWED_HOSTS = ['192.168.43.16']
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'blogdb',
-        'USER': 'yunus',
-        'PASSWORD': '1',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# DEBUG = False
+# ALLOWED_HOSTS = ['192.168.43.16']
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'blogdb',
+#         'USER': 'yunus',
+#         'PASSWORD': '1',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Geliştirici
-"""
+
 ALLOWED_HOSTS = []
 DEBUG = True
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -54,7 +56,7 @@ STATICFILES_DIRS = [
    os.path.join(BASE_DIR, "static"),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
-"""
+
 INSTALLED_APPS = [
     # Django Uygulamaları
 

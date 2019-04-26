@@ -1,11 +1,11 @@
+from django.http import JsonResponse
 from django.shortcuts import render, HttpResponse, get_object_or_404, HttpResponseRedirect, redirect, Http404
 from .models import Post
 from .form import PostForm, CommentForm
 from django.contrib import messages
 from django.utils.text import slugify
-
-
-# Create your views here.
+import json
+from django.core import serializers
 
 
 def post_index(request):
@@ -43,18 +43,6 @@ def post_create(request):
     context = {'forms': forms}
     return render(request, 'post/form.html', context)
 
-    # if request.method == "POST":
-    #     # Formdan Gelen Bilgileri Kaydet
-    #     forms = PostForm(request.POST)
-    #     if forms.is_valid():
-    #         forms.save()
-    # else:
-    #     # Formu Kullanıcıya Göster
-    #     forms = PostForm()
-
-    # Üstteki Satırlar da Aynı işi yapar
-    #  forms = PostForm(request.POST or None) Post dolu geldiyse parametre olarak al demektir.
-
 
 def post_update(request, slug):
     if not request.user.is_authenticated:
@@ -67,7 +55,6 @@ def post_update(request, slug):
         return HttpResponseRedirect(post.get_absolute_url())
     context = {'forms': forms}
     return render(request, 'post/form.html', context)
-    # return HttpResponse('Burası Post update')
 
 
 def post_delete(request, slug):
@@ -76,3 +63,35 @@ def post_delete(request, slug):
     post = get_object_or_404(Post, slug=slug)
     post.delete()
     return redirect('post:index')
+
+
+def all_post(request):
+    data = serializers.serialize('json', Post.objects.all())
+    file = open('JSON.txt', 'w')
+    file.write(data)
+    file.close()
+    return JsonResponse(data, safe=False)
+
+
+def create_post_api(requests):
+    post = Post()
+    post.user = requests.user
+    post.title = requests.GET.get('title')
+    post.text = requests.GET.get('text')
+    post.save()
+    return JsonResponse(json.dumps({'statu': 'Tamam Reis'}), safe=False)
+
+
+def delete_post_api(requests):
+    print(requests.GET.get('slug'))
+    post = get_object_or_404(Post, slug=requests.GET.get('slug'))
+    post.delete()
+    return JsonResponse(json.dumps({'status': 'Tamam Reis'}), safe=False)
+
+
+def update_post_api(requests):
+    post = get_object_or_404(Post, slug=requests.GET.get('slug'))
+    post.text = requests.GET.get('text')
+    post.title = requests.GET.get('title')
+    post.save()
+    return JsonResponse(json.dumps({'status': 'Tamam Reis'}), safe=False)
